@@ -76,8 +76,11 @@ public class CategoryServiceImp extends JdbcDaoSupport implements CategoryServic
 
 	@Override
 	public void deleteCategory(int id_category) {
-		String sql = "DELETE FROM category where id_category=?";
+		String sql = "UPDATE product SET isdelete = 1 where id_category= ?";
+		String sql1 = "UPDATE category SET isdelete = 1 where id_category= ?";
 		getJdbcTemplate().update(sql, id_category);
+		getJdbcTemplate().update(sql1, id_category);
+
 
 	}
 }
